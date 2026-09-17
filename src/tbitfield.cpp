@@ -14,8 +14,9 @@ static size_t SIZE = sizeof(TELEM) * 8;
 
 TBitField::TBitField(int len) {
     BitLen = len;
-    MemLen = len / SIZE + ((len % SIZE > 0) * SIZE);
+    MemLen = (len - 1) / SIZE + 1;
     pMem = new TELEM[MemLen];
+    std::memset(pMem, 0, sizeof(TELEM) * MemLen);
 }
 // конструктор копирования
 TBitField::TBitField(const TBitField &bf) {
@@ -67,6 +68,8 @@ TBitField& TBitField::operator=(const TBitField &bf) {
 
     BitLen = bf.BitLen;
     MemLen = bf.MemLen;
+    delete[] pMem;
+    
     pMem = new TELEM[MemLen];
     std::memcpy(pMem, bf.pMem, MemLen * sizeof(TELEM));
     
