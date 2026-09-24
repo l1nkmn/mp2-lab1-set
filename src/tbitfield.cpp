@@ -8,6 +8,7 @@
 #include "tbitfield.h"
 #include <iomanip>
 
+
 // Fake variables used as placeholders in tests
 static const int FAKE_INT = -1;
 static TBitField FAKE_BITFIELD(1);
