@@ -6,7 +6,7 @@
 // Битовое поле
 
 #include "tbitfield.h"
-#include <iomanip>
+#include <cstring>
 
 
 // Fake variables used as placeholders in tests
@@ -36,7 +36,7 @@ int TBitField::GetMemIndex(const int n) const // индекс Мем для би
 {
     if (n < 0 || n > BitLen)
         return FAKE_INT;
-    return (n - 1) / SIZE + 1;
+    return n / SIZE;
 }
 
 TELEM TBitField::GetMemMask(const int n) const // битовая маска для бита n
@@ -87,7 +87,7 @@ TBitField& TBitField::operator=(const TBitField &bf) {
 int TBitField::operator==(const TBitField &bf) const // сравнение
 {
     if (bf.BitLen != BitLen)
-        return FAKE_INT;
+        return 0;
     
     return memcmp(pMem, bf.pMem, MemLen * sizeof(TELEM)) != 0;
 }
@@ -95,7 +95,7 @@ int TBitField::operator==(const TBitField &bf) const // сравнение
 int TBitField::operator!=(const TBitField &bf) const // сравнение
 {
     if (bf.MemLen != MemLen)
-        return FAKE_INT;
+        return 1;
 
     return memcmp(pMem, bf.pMem, MemLen * sizeof(TELEM)) == 0;
 }
@@ -138,7 +138,7 @@ TBitField TBitField::operator&(const TBitField &bf) // операция "и"
 
 TBitField TBitField::operator~(void) // отрицание
 {
-    TBitField tmp(MemLen);
+    TBitField tmp(BitLen);
 
     for (int i = 0; i < MemLen; ++i) {
         tmp.pMem[i] = ~pMem[i];
