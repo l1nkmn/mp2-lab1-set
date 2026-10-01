@@ -7,9 +7,6 @@
     <ClCompile Include="C:\Users\s25380110\Desktop\lab1\mp2-lab1-set\src\tset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\s25380110\Desktop\lab1\mp2-lab1-set\include\tbitfield.h">
